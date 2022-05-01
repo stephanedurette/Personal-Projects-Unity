@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Helpers
 {
-    public static void DrawDebugBox(Vector2 origin, Vector2 size, float duration, Color color)
+    public static void DrawDebugBox(Vector2 origin, Vector2 size, Color color, float duration = 0f)
     {
         Vector2 bottomLeft = new Vector2(origin.x - size.x / 2, origin.y - size.y / 2);
         Vector2 topLeft = new Vector2(origin.x - size.x / 2, origin.y + size.y / 2);

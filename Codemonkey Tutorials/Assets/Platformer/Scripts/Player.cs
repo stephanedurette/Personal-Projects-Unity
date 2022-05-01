@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
         var hit = Physics2D.BoxCast(boxOrigin, boxSize, 0, Vector2.down, 0, floorLayer);
 
-        if (drawDebugBox) Helpers.DrawDebugBox(boxOrigin, boxSize, 2f, Color.red);
+        if (drawDebugBox) Helpers.DrawDebugBox(boxOrigin, boxSize, Color.red);
 
         return hit.collider != null;
     }
