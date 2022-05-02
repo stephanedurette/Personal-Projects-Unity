@@ -7,15 +7,15 @@ public class LevelManager : MonoBehaviour
 {
     private void OnEnable()
     {
-        EventManager.onPlayerDied += RestartGame;
+        EventManager.onRestartLevelRequested += RestartLevel;
     }
 
     private void OnDisable()
     {
-        EventManager.onPlayerDied -= RestartGame;
+        EventManager.onRestartLevelRequested -= RestartLevel;
     }
 
-    private void RestartGame() {
+    void RestartLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

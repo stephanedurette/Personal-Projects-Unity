@@ -14,10 +14,31 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float walkSpeed;
     [SerializeField] private float jumpVelocity;
+    [SerializeField] private float deathVelocityThreshold;
     [SerializeField] private LayerMask floorLayer;
 
     int walkingAnimHash = Animator.StringToHash("Walking");
     int jumpingAnimHash = Animator.StringToHash("Jumping");
+
+    private void OnEnable()
+    {
+        EventManager.onPlayerDied += Die;
+        EventManager.onGameWon += Win;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.onPlayerDied -= Die;
+        EventManager.onGameWon -= Win;
+    }
+
+    private void Die() {
+        gameObject.SetActive(false);
+    }
+
+    private void Win() {
+        gameObject.SetActive(false);
+    }
 
     void Start()
     {
@@ -26,6 +47,12 @@ public class Player : MonoBehaviour
     }
 
     void Update()
+    {
+        Move();
+        CheckFallDeath();
+    }
+
+    private void Move()
     {
         bool isGrounded = IsGrounded();
 
@@ -38,6 +65,13 @@ public class Player : MonoBehaviour
         spriteRenderer.flipX = xMoveVelocity > 0 ? false : xMoveVelocity < 0 ? true : spriteRenderer.flipX;
 
         rigidBody.velocity = new Vector2(xMoveVelocity, yMoveVelocity);
+    }
+
+    void CheckFallDeath() {
+        if (rigidBody.velocity.y <= deathVelocityThreshold)
+        {
+            EventManager.onPlayerDied?.Invoke();
+        }
     }
 
     bool IsGrounded(bool drawDebugBox = false) {
