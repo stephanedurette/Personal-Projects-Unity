@@ -8,7 +8,14 @@ public class EndScreen : MonoBehaviour
     [SerializeField] private GameObject winScreen, loseScreen;
     [SerializeField] private KeyCode restartKey;
 
-    private bool isGameOver = false;
+    private GameStates gameState = GameStates.Playing;
+
+    private enum GameStates
+    {
+        Playing,
+        Died,
+        Won,
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,18 +38,29 @@ public class EndScreen : MonoBehaviour
 
     private void Update()
     {
-        if (isGameOver && Input.GetKeyDown(restartKey))
-            EventManager.onRestartLevelRequested?.Invoke();
+        if (!Input.GetKeyDown(restartKey)) return;
+
+        switch (gameState)
+        {
+            case GameStates.Won:
+                EventManager.onNextLevelRequested?.Invoke();
+                break;
+            case GameStates.Died:
+                EventManager.onRestartLevelRequested?.Invoke();
+                break;
+            default:
+                break;
+        }
     }
 
     private void OpenLoseMenu() {
-        isGameOver = true;
+        gameState = GameStates.Died;
         loseScreen.SetActive(true);
     }
 
     private void OpenWinMenu()
     {
-        isGameOver = true;
+        gameState = GameStates.Won;
         winScreen.SetActive(true);
     }
 }

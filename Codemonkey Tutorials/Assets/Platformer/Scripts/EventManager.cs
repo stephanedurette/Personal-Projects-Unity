@@ -10,6 +10,9 @@ public static class EventManager
     public delegate void RestartLevelRequested();
     public static RestartLevelRequested onRestartLevelRequested;
 
+    public delegate void NextLevelRequested();
+    public static NextLevelRequested onNextLevelRequested;
+
     public delegate void CoinCollected(int coinAmount);
     public static CoinCollected onCoinCollected;
 
