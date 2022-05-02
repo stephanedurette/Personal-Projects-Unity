@@ -16,12 +16,12 @@ public class CoinManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.onCoinCollected += () => UpdateCoinCount(1);
+        EventManager.onCoinCollected += UpdateCoinCount;
     }
 
     private void OnDisable()
     {
-        
+        EventManager.onCoinCollected -= UpdateCoinCount;
     }
 
     private void UpdateCoinCount(int addedCoins) {

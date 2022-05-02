@@ -6,7 +6,7 @@ public class Coin : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EventManager.onCoinCollected?.Invoke();
+        EventManager.onCoinCollected?.Invoke(1);
         Destroy(this.gameObject);
     }
 }

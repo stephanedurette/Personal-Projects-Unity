@@ -10,7 +10,7 @@ public static class EventManager
     public delegate void RestartLevelRequested();
     public static RestartLevelRequested onRestartLevelRequested;
 
-    public delegate void CoinCollected();
+    public delegate void CoinCollected(int coinAmount);
     public static CoinCollected onCoinCollected;
 
     public delegate void GameWon();
