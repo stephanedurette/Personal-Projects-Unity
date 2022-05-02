@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private KeyCode restartKey;
-
-    void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(restartKey)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        EventManager.onPlayerDied += RestartGame;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.onPlayerDied -= RestartGame;
+    }
+
+    private void RestartGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

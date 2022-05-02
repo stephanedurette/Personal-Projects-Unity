@@ -7,7 +7,7 @@ public class Deadly : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SetActive(false);
+        EventManager.onPlayerDied?.Invoke();
     }
 
 }

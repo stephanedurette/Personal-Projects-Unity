@@ -926,7 +926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c576f85c782fad4e9a4ef4d8a9e3e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartKey: 114
 --- !u!1 &1777637396
 GameObject:
   m_ObjectHideFlags: 0
