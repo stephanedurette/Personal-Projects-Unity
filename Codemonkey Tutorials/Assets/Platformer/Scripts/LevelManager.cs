@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private static int currentLevelIndex = 0;
+    [SerializeField] private int currentLevelIndex = 0;
     [SerializeField] private List<GameObject> levels;
 
     private static LevelManager _instance;
